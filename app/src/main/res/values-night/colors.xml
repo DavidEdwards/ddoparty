@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FF111111</color>
+    <color name="primaryVariant">#FF222222</color>
+    <color name="secondary">#FF03DAC5</color>
+    <color name="secondaryVariant">#FF0AC9F0</color>
+    <color name="background">#FF121212</color>
+    <color name="surface">@color/black</color>
+    <color name="error">#FFCF6679</color>
+    <color name="onPrimary">@color/white</color>
+    <color name="onSecondary">@color/white</color>
+    <color name="onBackground">@color/white</color>
+    <color name="onSurface">@color/white</color>
+    <color name="onError">@color/black</color>
+</resources>
+
+    <!--    primary = Color(#FF1F1F1F),-->
+    <!--    primaryVariant = Color(#FF3E2723),-->
+    <!--    secondary = Color(#FF03DAC5),-->
+    <!--    background = Color(#FF121212),-->
+    <!--    surface = Color.Black,-->
+    <!--    error = Color(#FFCF6679),-->
+    <!--    onPrimary = Color.White,-->
+    <!--    onSecondary = Color.White,-->
+    <!--    onBackground = Color.White,-->
+    <!--    onSurface = Color.White,-->
+    <!--    onError = Color.Black-->
