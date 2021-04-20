@@ -45,12 +45,6 @@ fun PartyScreen() {
     val filterState = vm.filtersAndConditions().collectAsState(initial = emptyList())
     val networkState = vm.networkState().collectAsState(initial = NetworkState.None)
 
-    // TODO: Add this once repeatOnLifecycle is added to lifecycle-ktx
-    //  × https://kotlinlang.slack.com/archives/CJLTWPH7S/p1615397085281600?thread_ts=1615395535.277500&cid=CJLTWPH7S
-//    RepeatingLaunchedEffect(5000L) {
-//        vm.refreshParties()
-//    }
-
     val partyServerGroups = partyGroupState.value
     if (partyServerGroups.isEmpty() && networkState.value is NetworkState.Loading) {
         LoadingIndicator()

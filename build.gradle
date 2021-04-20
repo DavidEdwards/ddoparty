@@ -4,7 +4,7 @@ buildscript {
         compose_version = '1.0.0-beta04'
         room_version = "2.2.6"
         kotlin_version = "1.4.32"
-        lifecycle_version = "2.3.1"
+        lifecycle_version = "2.4.0-alpha01"
         okhttp_version = "4.9.1"
     }
 
