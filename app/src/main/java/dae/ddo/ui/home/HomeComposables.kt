@@ -139,6 +139,7 @@ fun TopBar(
                         )
                     }
                 }
+                else -> {}
             }
 
             IconButton(onClick = {
@@ -226,8 +227,7 @@ fun BottomBar(activeTab: MutableState<NavigationLocator>) {
 @Composable
 fun FloatingAction(activeTab: MutableState<NavigationLocator>) {
     Column {
-        val tab = activeTab.value
-        when (tab) {
+        when (activeTab.value) {
             LocatorTabParties -> {
             }
             LocatorTabQuests -> {
@@ -246,6 +246,7 @@ fun FloatingAction(activeTab: MutableState<NavigationLocator>) {
                     contentDescription = LocalContext.current.getString(R.string.add)
                 )
             }
+            else -> {}
         }
     }
 }

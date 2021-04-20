@@ -9,7 +9,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,8 +20,6 @@ import dae.ddo.R
 import dae.ddo.entities.Party
 import dae.ddo.entities.Quest
 import dae.ddo.utils.extensions.launch
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 
 @Composable
 fun LoadingIndicator() {
@@ -137,15 +134,5 @@ fun WebLinkButton(
             imageVector = Icons.Default.Search,
             contentDescription = LocalContext.current.getString(R.string.go_to_website)
         )
-    }
-}
-
-@Composable
-fun RepeatingLaunchedEffect(time: Long, block: suspend () -> Unit) {
-    LaunchedEffect(true) {
-        while (isActive) {
-            delay(time)
-            block.invoke()
-        }
     }
 }

@@ -37,7 +37,7 @@ val darkThemeColors = darkColors(
 )
 
 @Composable
-fun DdoTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun DdoTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         darkThemeColors
     } else {

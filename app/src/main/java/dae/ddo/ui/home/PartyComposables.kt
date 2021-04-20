@@ -249,9 +249,9 @@ fun QuestPlayerCount(count: Int) {
 fun QuestPlayerList(list: List<Player>) {
     list.forEach { player ->
         val totalLevel = player.classes.sumBy { clazz -> clazz.level }
-        val classesList =
-            player.classes.map { clazz -> "${clazz.level} ${clazz.name.substring(0, 3)}" }
-                .joinToString(", ")
+        val classesList = player.classes.joinToString(", ") { clazz ->
+            "${clazz.level} ${clazz.name.substring(0, 3)}"
+        }
 
         val levelText = if (player.classes.size > 1) {
             " ($totalLevel)"

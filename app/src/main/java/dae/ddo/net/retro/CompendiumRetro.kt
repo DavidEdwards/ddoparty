@@ -25,6 +25,7 @@ data class QuestRetro(
     val raid: Boolean,
 )
 
+@Suppress("unused")
 data class OccurrenceRetro(
     @SerializedName("Day")
     val instant: LocalDateTime,

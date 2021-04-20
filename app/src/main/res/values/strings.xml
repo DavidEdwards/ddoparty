@@ -65,7 +65,7 @@
     <string name="server_issues">Server issues</string>
     <string name="go_to_website">Go to website</string>
     <string name="dungeons_dragons_online"><![CDATA[Dungeons & Dragons Online]]></string>
-    <string name="dungeons_dragons_copyright"><![CDATA[Dungeons & Dragons Online® interactive video game (c) 2017 Standing Stone Games LLC. All other elements (c) 2017 HASBRO, Inc. Standing Stone Games and the Standing Stone Games logo are trademarks or registered trademarks of Standing Stone Games LLC. Dungeons & Dragons Online is trademarked by Wizards of the Coast LLC.]]></string>
+    <string name="dungeons_dragons_copyright"><![CDATA[Dungeons & Dragons Online® interactive video game © 2017 Standing Stone Games LLC. All other elements © 2017 HASBRO, Inc. Standing Stone Games and the Standing Stone Games logo are trademarks or registered trademarks of Standing Stone Games LLC. Dungeons & Dragons Online is trademarked by Wizards of the Coast LLC.]]></string>
     <string name="no_filters">No filters found</string>
     <string name="notifications">Notifications</string>
     <string name="notify_for_extreme_relevancy">Send a notification when a quest matches an extreme relevancy condition</string>

@@ -1,10 +1,6 @@
 package dae.ddo.repositories
 
 import android.content.res.AssetManager
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.longPreferencesKey
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dae.ddo.BuildConfig
@@ -27,7 +23,6 @@ import timber.log.Timber
 
 class MainRepository(
     private val db: BaseDatabase,
-    private val dataStore: DataStore<Preferences>,
     private val assetManager: AssetManager
 ) {
     private val service: DdoService
@@ -137,6 +132,7 @@ class MainRepository(
                 try {
                     val quests = mutableListOf<Quest>()
 
+                    @Suppress("BlockingMethodInNonBlockingContext")
                     assetManager
                         .open("Quest.csv")
                         .bufferedReader()
@@ -189,12 +185,6 @@ class MainRepository(
 
     fun getCondition(conditionId: Long) = db.filterDao().getCondition(conditionId)
 
-    suspend fun lastPartyRefresh(): Flow<Instant> {
-        return dataStore.data.map { settings ->
-            Instant.ofEpochMilli(settings[LAST_PARTY_REFRESH] ?: 0L)
-        }
-    }
-
     suspend fun deleteFilter(filterId: Long) {
         Timber.v("Delete filter $filterId")
         withContext(Dispatchers.IO) {
@@ -206,13 +196,6 @@ class MainRepository(
         Timber.v("Delete condition $conditionId")
         withContext(Dispatchers.IO) {
             db.filterDao().deleteConditionById(conditionId)
-        }
-    }
-
-    suspend fun setPartyRefresh(instant: Instant) {
-        Timber.v("Set party last refreshed at $instant")
-        dataStore.edit { settings ->
-            settings[LAST_PARTY_REFRESH] = instant.toEpochMilli()
         }
     }
 
@@ -334,7 +317,6 @@ class MainRepository(
 
                 db.partyDao().deleteAllByNotPartyId(partyIds)
                 db.partyDao().insertAll(nonAuditParties)
-                setPartyRefresh(Instant.now())
             }
 
             networkState.value = NetworkState.None
@@ -349,10 +331,6 @@ class MainRepository(
         }
 
         return emptyList()
-    }
-
-    companion object {
-        private val LAST_PARTY_REFRESH = longPreferencesKey("LAST_PARTY_REFRESH")
     }
 
 }

@@ -54,7 +54,6 @@ class AppModule {
     ): MainRepository {
         return MainRepository(
             baseDatabase,
-            appContext.dataStore,
             appContext.assets
         )
     }
