@@ -16,11 +16,14 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import dae.ddo.R
 import dae.ddo.entities.Quest
 import dae.ddo.state.NetworkState
+import dae.ddo.testdata.SampleQuestProvider
 import dae.ddo.ui.support.viewModel
 import dae.ddo.viewmodels.QuestViewModel
 
@@ -30,7 +33,7 @@ import dae.ddo.viewmodels.QuestViewModel
 //    @PreviewParameter(SamplePartyUiDataProvider::class, 1) dataList: List<PartyUiData>
 //) {
 @Composable
-fun QuestList() {
+fun QuestScreen() {
     val vm: QuestViewModel by viewModel()
 
     val searchTerm = remember { mutableStateOf("") }
@@ -102,24 +105,30 @@ fun QuestList() {
                     textAlign = TextAlign.Center
                 )
             } else {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .zIndex(1f),
-                    contentPadding = PaddingValues(
-                        top = 72.dp,
-                        bottom = 48.dp,
-                        start = 16.dp,
-                        end = 16.dp
-                    )
-                ) {
-                    items(quests) { quest ->
-                        QuestCard(quest = quest)
-                    }
-                }
+                QuestList(quests = quests)
             }
         } else {
             LoadingIndicator()
+        }
+    }
+}
+
+@Preview
+@Composable
+fun QuestList(@PreviewParameter(SampleQuestProvider::class, 1) quests: List<Quest>) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .zIndex(1f),
+        contentPadding = PaddingValues(
+            top = 72.dp,
+            bottom = 48.dp,
+            start = 16.dp,
+            end = 16.dp
+        )
+    ) {
+        items(quests) { quest ->
+            QuestCard(quest = quest)
         }
     }
 }

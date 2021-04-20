@@ -46,7 +46,7 @@ fun Home() {
 @Composable
 fun TopBar(
     activeTab: MutableState<NavigationLocator>,
-    appBarTitle: MutableState<String>
+    appBarTitle: MutableState<String> = mutableStateOf("Title")
 ) {
     val vm: HomeViewModel by viewModel()
     val tab = activeTab.value
@@ -168,7 +168,7 @@ fun BodyContent(
             }
             is LocatorTabQuests -> {
                 toolbarTitle.value = LocalContext.current.getString(R.string.quest_compendium)
-                QuestList()
+                QuestScreen()
             }
             is LocatorTabFilters -> {
                 toolbarTitle.value = LocalContext.current.getString(R.string.filters)

@@ -5,6 +5,7 @@ package dae.ddo.testdata
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import dae.ddo.entities.Party
 import dae.ddo.entities.Quest
+import dae.ddo.state.*
 import dae.ddo.ui.data.PartyUiData
 
 class SamplePartyUiDataProvider : PreviewParameterProvider<List<PartyUiData>> {
@@ -89,5 +90,22 @@ class SampleQuestProvider : PreviewParameterProvider<List<Quest>> {
             Quest.sample(9)
         )
     )
+    override val count: Int = values.count()
+}
+
+class SampleNavigationLocatorProvider : PreviewParameterProvider<NavigationLocator> {
+    override val values = sequenceOf(
+        LocatorSettings,
+        LocatorTabFilters,
+        LocatorTabParties,
+        LocatorTabQuests,
+        LocatorEditCondition(1, 1),
+        LocatorEditFilter(1)
+    )
+    override val count: Int = values.count()
+}
+
+class SampleTitleProvider : PreviewParameterProvider<String> {
+    override val values = sequenceOf("Title")
     override val count: Int = values.count()
 }
