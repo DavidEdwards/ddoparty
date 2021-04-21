@@ -103,7 +103,11 @@ fun FilterCard(
             modifier = Modifier.padding(16.dp)
         ) {
             FilterTitle(text = filter.name, mustMatch = filter.mustMatch)
-            Text(text = filter.relevancy.relevancyString())
+            if(filter.mustMatch) {
+                Text(text = LocalContext.current.getString(R.string.must_match))
+            } else {
+                Text(text = filter.relevancy.relevancyString())
+            }
             Row(
                 verticalAlignment = Alignment.Bottom
             ) {
@@ -120,6 +124,7 @@ fun FilterCard(
                                     ConditionType.SERVER -> condition.arg1
                                     ConditionType.GUILD -> condition.arg1
                                     ConditionType.PLAYER -> condition.arg1
+                                    ConditionType.TEXT -> condition.arg1
                                     ConditionType.LEVEL -> "${condition.arg2} - ${condition.arg3}"
                                     ConditionType.QUEST -> condition.arg1
                                     ConditionType.RAID -> condition.arg5
@@ -176,6 +181,26 @@ fun EditFilter(
     val conditionsState = remember { mutableStateOf(listOf<Condition>()) }
     val relevancyState = remember { mutableStateOf(0) }
 
+    fun save() {
+        scope.launch {
+            val saveFilter = FilterConditions(
+                filter = Filter(
+                    id = filterId ?: idState.value,
+                    name = nameState.value,
+                    mustMatch = mustMatchState.value,
+                    relevancy = relevancyState.value,
+                    enabled = true
+                ),
+                conditions = conditionsState.value
+            )
+            val id = vm.saveFilter(saveFilter)
+
+            activeTab.value = LocatorEditFilter(
+                id ?: idState.value
+            )
+        }
+    }
+
     LaunchedEffect(key1 = "filterConditionLoad,$filterId") {
         val filterConditions = withContext(Dispatchers.IO) {
             filterId?.let { vm.getFilterConditions(filterId).firstOrNull() }
@@ -190,6 +215,10 @@ fun EditFilter(
             relevancyState.value = filter.relevancy
 
             canAddConditionState.value = filter.name.isNotBlank()
+        }
+
+        if(filterConditions.filter.id == 0L) {
+            save()
         }
     }
 
@@ -255,25 +284,7 @@ fun EditFilter(
             Button(
                 onClick = {
                     Timber.v("Save filter")
-
-                    val saveFilter = FilterConditions(
-                        filter = Filter(
-                            id = idState.value,
-                            name = nameState.value,
-                            mustMatch = mustMatchState.value,
-                            relevancy = relevancyState.value,
-                            enabled = true
-                        ),
-                        conditions = conditionsState.value
-                    )
-
-                    scope.launch {
-                        val id = vm.saveFilter(saveFilter)
-
-                        activeTab.value = LocatorEditFilter(
-                            id ?: idState.value
-                        )
-                    }
+                    save()
                 },
                 enabled = canAddConditionState.value
             ) {
@@ -284,8 +295,9 @@ fun EditFilter(
 
             Button(
                 onClick = {
-                    Timber.v("Add condition")
+                    save()
 
+                    Timber.v("Add condition")
                     activeTab.value = LocatorEditCondition(
                         idState.value
                     )

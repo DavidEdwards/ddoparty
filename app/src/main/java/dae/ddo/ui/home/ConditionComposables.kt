@@ -266,6 +266,27 @@ fun ConditionTypeFields(
                 )
             )
         }
+        ConditionType.TEXT -> {
+            TextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = arg1State.value,
+                onValueChange = { name ->
+                    arg1State.value = name
+                    validate()
+                },
+                label = {
+                    Text(text = LocalContext.current.getString(R.string.text))
+                },
+                placeholder = {
+                    Text(text = LocalContext.current.getString(R.string.what_is_text))
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = MaterialTheme.colors.surface,
+                    textColor = MaterialTheme.colors.onSurface
+                )
+            )
+        }
         ConditionType.GUILD -> {
             TextField(
                 modifier = Modifier

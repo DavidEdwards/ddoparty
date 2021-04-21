@@ -69,5 +69,8 @@
     <string name="no_filters">No filters found</string>
     <string name="notifications">Notifications</string>
     <string name="notify_for_extreme_relevancy">Send a notification when a quest matches an extreme relevancy condition</string>
+    <string name="must_match">Parties must match this filter</string>
+    <string name="text">Text</string>
+    <string name="what_is_text">Text to search for</string>
 
 </resources>

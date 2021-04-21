@@ -21,6 +21,7 @@ enum class ConditionType(
     NONE(R.string.none),
     SERVER(R.string.server),
     GUILD(R.string.guild),
+    TEXT(R.string.text),
     PLAYER(R.string.player),
     LEVEL(R.string.level_range),
     QUEST(R.string.quest_name),
@@ -55,6 +56,14 @@ data class Condition(
             ConditionType.SERVER -> party.server.contains(arg1.toRegex(RegexOption.IGNORE_CASE))
             ConditionType.GUILD -> party.players()
                 .any { it.guild?.contains(arg1.toRegex(RegexOption.IGNORE_CASE)) == true }
+            ConditionType.TEXT -> party.players()
+                .any { it.guild?.contains(arg1.toRegex(RegexOption.IGNORE_CASE)) == true } ||
+                    party.quest?.name?.contains(arg1.toRegex(RegexOption.IGNORE_CASE))
+                        .orElse(false) ||
+                    party.quest?.adventureArea?.contains(arg1.toRegex(RegexOption.IGNORE_CASE))
+                        .orElse(false) ||
+                    party.comment?.contains(arg1.toRegex(RegexOption.IGNORE_CASE))
+                        .orElse(false)
             ConditionType.PLAYER -> party.players()
                 .any { it.name.contains(arg1.toRegex(RegexOption.IGNORE_CASE)) }
             ConditionType.LEVEL -> {
@@ -130,6 +139,13 @@ data class FilterConditions(
             FilterConditions(
                 Filter(0, "Server", false, 4, true), listOf(
                     Condition(0, 0, ConditionType.SERVER, server, 0, 0, 0f, false)
+                )
+            )
+
+        fun text(text: String) =
+            FilterConditions(
+                Filter(0, "Text", false, 4, true), listOf(
+                    Condition(0, 0, ConditionType.TEXT, text, 0, 0, 0f, false)
                 )
             )
     }
