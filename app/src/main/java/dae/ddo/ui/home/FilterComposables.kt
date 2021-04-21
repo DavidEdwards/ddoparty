@@ -1,5 +1,6 @@
 package dae.ddo.ui.home
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -18,6 +19,7 @@ import dae.ddo.R
 import dae.ddo.entities.*
 import dae.ddo.state.LocatorEditCondition
 import dae.ddo.state.LocatorEditFilter
+import dae.ddo.state.LocatorTabFilters
 import dae.ddo.state.NavigationLocator
 import dae.ddo.ui.support.viewModel
 import dae.ddo.viewmodels.FilterViewModel
@@ -41,7 +43,7 @@ private fun Int.relevancyString(): String {
 }
 
 @Composable
-fun FilterList(
+fun FilterListScreen(
     activeTab: MutableState<NavigationLocator>
 ) {
     val vm: FilterViewModel by viewModel()
@@ -167,10 +169,14 @@ fun FilterTitle(
 }
 
 @Composable
-fun EditFilter(
+fun EditFilterScreen(
     activeTab: MutableState<NavigationLocator>,
     filterId: Long? = null
 ) {
+    BackHandler(onBack = {
+        activeTab.value = LocatorTabFilters
+    })
+
     val vm: FilterViewModel by viewModel()
     val scope = rememberCoroutineScope()
 

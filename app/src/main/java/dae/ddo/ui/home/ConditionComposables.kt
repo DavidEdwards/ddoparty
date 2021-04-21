@@ -1,5 +1,6 @@
 package dae.ddo.ui.home
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -82,11 +83,15 @@ fun ConditionList(
 }
 
 @Composable
-fun EditCondition(
+fun EditConditionScreen(
     activeTab: MutableState<NavigationLocator>,
     filterId: Long,
     conditionId: Long? = null
 ) {
+    BackHandler(onBack = {
+        activeTab.value = LocatorEditFilter(filterId = filterId)
+    })
+
     val vm: FilterViewModel by viewModel()
     val scope = rememberCoroutineScope()
 

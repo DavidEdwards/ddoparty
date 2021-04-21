@@ -172,19 +172,19 @@ fun BodyContent(
             }
             is LocatorTabFilters -> {
                 toolbarTitle.value = LocalContext.current.getString(R.string.filters)
-                FilterList(activeTab)
+                FilterListScreen(activeTab)
             }
             is LocatorEditFilter -> {
                 toolbarTitle.value = LocalContext.current.getString(R.string.edit_filter)
-                EditFilter(activeTab, filterId = tab.filterId)
+                EditFilterScreen(activeTab, filterId = tab.filterId)
             }
             is LocatorEditCondition -> {
                 toolbarTitle.value = LocalContext.current.getString(R.string.edit_condition)
-                EditCondition(activeTab, filterId = tab.filterId, conditionId = tab.conditionId)
+                EditConditionScreen(activeTab, filterId = tab.filterId, conditionId = tab.conditionId)
             }
             is LocatorSettings -> {
                 toolbarTitle.value = LocalContext.current.getString(R.string.settings)
-                Settings()
+                SettingsScreen(activeTab)
             }
         }
     }

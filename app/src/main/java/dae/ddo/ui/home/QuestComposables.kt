@@ -27,11 +27,6 @@ import dae.ddo.testdata.SampleQuestProvider
 import dae.ddo.ui.support.viewModel
 import dae.ddo.viewmodels.QuestViewModel
 
-//@Preview
-//@Composable
-//fun PartyList(
-//    @PreviewParameter(SamplePartyUiDataProvider::class, 1) dataList: List<PartyUiData>
-//) {
 @Composable
 fun QuestScreen() {
     val vm: QuestViewModel by viewModel()
