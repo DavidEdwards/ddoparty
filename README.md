@@ -7,9 +7,27 @@ It is a party finder for the game [Dungeons and Dragons Online](https://www.ddo.
 
 It uses an API provided by [DDO Audit](https://www.playeraudit.com/api/).
 
+## Features
+
+* List all active parties in DDO
+* List of all quests in the game and find Wiki information
+* Filter parties by various different conditions, such as:
+  * Server name
+  * Guild name
+  * Any text
+  * Player name
+  * Level range
+  * Quest name
+  * Raid
+  * Difficulty
+
+## Screenshots
+
 <img src="/screens/screen1.png" width="100px" />
 <img src="/screens/screen2.png" width="100px" />
 <img src="/screens/screen3.png" width="100px" />
+
+## Copyrights
 
 Dungeons & Dragons Online® interactive video game © 2017 Standing Stone Games LLC. All other
 elements © 2017 HASBRO, Inc. Standing Stone Games and the Standing Stone Games logo are trademarks
