@@ -1,8 +1,10 @@
 package dae.ddo.net.retro
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import org.threeten.bp.LocalDateTime
 
+@Keep
 data class CompendiumRetro(
     @SerializedName("ServerName")
     val name: String,
@@ -10,6 +12,7 @@ data class CompendiumRetro(
     val quests: List<QuestRetro>
 )
 
+@Keep
 data class QuestRetro(
     @SerializedName("QuestName")
     val name: String,
@@ -25,6 +28,7 @@ data class QuestRetro(
     val raid: Boolean,
 )
 
+@Keep
 @Suppress("unused")
 data class OccurrenceRetro(
     @SerializedName("Day")

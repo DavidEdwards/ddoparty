@@ -1,9 +1,11 @@
 package dae.ddo.entities
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+@Keep
 @Entity(
     indices = [Index("name", unique = true)]
 )

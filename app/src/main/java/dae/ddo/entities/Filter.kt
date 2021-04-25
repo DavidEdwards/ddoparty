@@ -1,10 +1,12 @@
 package dae.ddo.entities
 
+import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import androidx.room.*
 import dae.ddo.R
 import dae.ddo.utils.extensions.orElse
 
+@Keep
 @Entity
 data class Filter(
     @PrimaryKey(autoGenerate = true) val id: Long,
@@ -14,6 +16,7 @@ data class Filter(
     val enabled: Boolean
 )
 
+@Keep
 enum class ConditionType(
     @StringRes
     val readable: Int
@@ -29,6 +32,7 @@ enum class ConditionType(
     DIFFICULTY(R.string.difficulty)
 }
 
+@Keep
 @Entity(
     foreignKeys = [
         ForeignKey(
@@ -90,6 +94,7 @@ data class Condition(
     }
 }
 
+@Keep
 data class FilterConditions(
     @Embedded
     val filter: Filter,

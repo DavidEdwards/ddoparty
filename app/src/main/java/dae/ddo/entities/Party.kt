@@ -1,11 +1,13 @@
 package dae.ddo.entities
 
+import androidx.annotation.Keep
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import org.threeten.bp.Instant
 
+@Keep
 @Entity(
     indices = [Index("id", unique = true)]
 )
@@ -51,6 +53,7 @@ data class Party(
     }
 }
 
+@Keep
 data class PartyQuest(
     val hexId: String,
     val name: String?,
@@ -93,6 +96,7 @@ data class PartyQuest(
     }
 }
 
+@Keep
 data class Player(
     val name: String,
     val gender: String,
@@ -121,6 +125,7 @@ data class Player(
     }
 }
 
+@Keep
 data class Location(
     val name: String,
     val region: String?,
@@ -139,6 +144,7 @@ data class Location(
     }
 }
 
+@Keep
 data class Class(
     val name: String,
     val level: Int

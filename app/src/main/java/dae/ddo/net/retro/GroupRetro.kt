@@ -1,7 +1,9 @@
 package dae.ddo.net.retro
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class ServerGroupRetro(
     @SerializedName("Name")
     val name: String,
@@ -13,6 +15,7 @@ data class ServerGroupRetro(
     val parties: List<PartyRetro>
 )
 
+@Keep
 data class PartyRetro(
     @SerializedName("Id")
     val id: Long,
@@ -36,6 +39,7 @@ data class PartyRetro(
     val members: List<PlayerRetro>,
 )
 
+@Keep
 data class PartyQuestRetro(
     @SerializedName("HexId")
     val hexId: String,
@@ -71,6 +75,7 @@ data class PartyQuestRetro(
     val patron: String?,
 )
 
+@Keep
 data class PlayerRetro(
     @SerializedName("Name")
     val name: String,
@@ -90,6 +95,7 @@ data class PlayerRetro(
     val homeServer: String?
 )
 
+@Keep
 data class LocationRetro(
     @SerializedName("Name")
     val name: String,
@@ -101,6 +107,7 @@ data class LocationRetro(
     val publicSpace: Boolean
 )
 
+@Keep
 data class ClassRetro(
     @SerializedName("Name")
     val name: String,
