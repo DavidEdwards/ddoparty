@@ -187,24 +187,27 @@ fun EditFilterScreen(
     val conditionsState = remember { mutableStateOf(listOf<Condition>()) }
     val relevancyState = remember { mutableStateOf(0) }
 
-    fun save() {
-        scope.launch {
-            val saveFilter = FilterConditions(
-                filter = Filter(
-                    id = filterId ?: idState.value,
-                    name = nameState.value,
-                    mustMatch = mustMatchState.value,
-                    relevancy = relevancyState.value,
-                    enabled = true
-                ),
-                conditions = conditionsState.value
-            )
-            val id = vm.saveFilter(saveFilter)
+    suspend fun save(): Long {
+        if(!canAddConditionState.value) return -1L
+        Timber.v("Save filter")
 
-            activeTab.value = LocatorEditFilter(
-                id ?: idState.value
-            )
-        }
+        val saveFilter = FilterConditions(
+            filter = Filter(
+                id = filterId ?: idState.value,
+                name = nameState.value,
+                mustMatch = mustMatchState.value,
+                relevancy = relevancyState.value,
+                enabled = true
+            ),
+            conditions = conditionsState.value
+        )
+        val id = vm.saveFilter(saveFilter)
+
+        activeTab.value = LocatorEditFilter(
+            id ?: idState.value
+        )
+
+        return id ?: -1L
     }
 
     LaunchedEffect(key1 = "filterConditionLoad,$filterId") {
@@ -221,10 +224,6 @@ fun EditFilterScreen(
             relevancyState.value = filter.relevancy
 
             canAddConditionState.value = filter.name.isNotBlank()
-        }
-
-        if(filterConditions.filter.id == 0L) {
-            save()
         }
     }
 
@@ -289,8 +288,9 @@ fun EditFilterScreen(
         ) {
             Button(
                 onClick = {
-                    Timber.v("Save filter")
-                    save()
+                    scope.launch {
+                        save()
+                    }
                 },
                 enabled = canAddConditionState.value
             ) {
@@ -301,14 +301,16 @@ fun EditFilterScreen(
 
             Button(
                 onClick = {
-                    save()
+                    scope.launch {
+                        val id = save()
 
-                    Timber.v("Add condition")
-                    activeTab.value = LocatorEditCondition(
-                        idState.value
-                    )
+                        Timber.v("Add condition")
+                        activeTab.value = LocatorEditCondition(
+                            id
+                        )
+                    }
                 },
-                enabled = idState.value > 0
+                enabled = canAddConditionState.value
             ) {
                 Text(text = LocalContext.current.getString(R.string.add_condition))
             }
