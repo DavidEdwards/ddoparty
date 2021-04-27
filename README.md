@@ -7,6 +7,8 @@ It is a party finder for the game [Dungeons and Dragons Online](https://www.ddo.
 
 It uses an API provided by [DDO Audit](https://www.playeraudit.com/api/).
 
+The App can be downloaded from [Google Play](https://play.google.com/store/apps/details?id=dae.ddo).
+
 ## Features
 
 * List all active parties in DDO
