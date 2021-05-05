@@ -61,7 +61,7 @@
     <string name="edit_condition">Edit Condition</string>
     <string name="data_sources">Data sources</string>
     <string name="data_source_api">DDO Audit · The data for this App comes from DDO Audit. The data is not owned by DDO Audit, nor is it owned by this App. Click here for more information.</string>
-    <string name="data_source_ddo">Dungeons &amp; Dragons Online · The data for this App ultimately comes from DDO itself, through DDO Audio. All data is owned by whomever currently owns the game Dungeons &amp; Dragons Online. Click here for more information.</string>
+    <string name="data_source_ddo">Dungeons &amp; Dragons Online · The data for this App ultimately comes from DDO itself, through DDO Audit. All data is owned by whomever currently owns the game Dungeons &amp; Dragons Online. Click here for more information.</string>
     <string name="server_issues">Server issues</string>
     <string name="go_to_website">Go to website</string>
     <string name="dungeons_dragons_online"><![CDATA[Dungeons & Dragons Online]]></string>
